@@ -1,5 +1,6 @@
 dotfiles
 ========
-git clone https://github.com/imbahom/dotfiles ~/.dotfiles
+in your shell:
 
-run setup shell script then
+    git clone https://github.com/imbahom/dotfiles ~/.dotfiles
+    sh ~/.dotfiles/setup.sh
