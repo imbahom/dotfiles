@@ -20,7 +20,7 @@ Bundle 'imbahom/quick-x.vim'
 " Shell
 " ----------------
 Bundle 'Shougo/vimshell.vim'
-Bundle 'Shougo/vimproc'
+" Bundle 'Shougo/vimproc'
 "------------------
 " Code Completions
 "------------------
@@ -36,7 +36,7 @@ Bundle 'tomtom/tlib_vim'
 "-----------------
 " Fast navigation
 "-----------------
-Bundle 'tsaleh/vim-matchit'
+" Bundle 'tsaleh/vim-matchit'
 Bundle 'Lokaltog/vim-easymotion'
 
 "--------------
@@ -120,7 +120,7 @@ syntax on
 "color scheme
 set background=light
 if has("gui_running")
-    color desert
+    color solarized
 
     " highlight current line
     au WinLeave * set nocursorline nocursorcolumn
@@ -146,6 +146,8 @@ set mouse=a                                                       " use mouse in
 set report=0                                                      " always report number of lines changed                "
 set nowrap                                                        " dont wrap lines
 set scrolloff=5                                                   " 5 lines above/below cursor when scrolling
+" set showbreak=>\
+" set cpoptions+=n
 " make screen more clear and i prefer to use easy motion instead
 " set number                                                        " show line numbers
 set showmatch                                                     " show matching bracket (briefly jump)
@@ -165,6 +167,10 @@ set shiftwidth=4    " indent width
 " set textwidth=79
 " set smarttab
 set expandtab       " expand tab to space
+
+set backupskip=/tmp/*,/private/tmp/*
+
+au VimResized * exe "normal! \<c-w>="
 
 autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
@@ -376,3 +382,10 @@ nnoremap K <nop>
 " the cursor, but Y yanks the whole line, which is inconsistent (and can be
 " done with yy anyway); this fixes it so it only yanks the rest of the line
 noremap Y y$
+
+" dont use vim's insane regex rule, instead use python style
+" 使用 "\v" 会使得其后的模式中所有 '0'-'9'，'a'-'z'，'A'-'Z' 和 '_' 之外的字符都
+" 当作特殊字符解释。"very magic"
+" 使用 "\V" 会使得其后的模式中只有反斜杠有特殊的意义。"very nomagic"
+nnoremap / /\v
+vnoremap / /\v
