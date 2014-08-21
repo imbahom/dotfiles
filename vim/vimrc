@@ -167,9 +167,8 @@ set shiftwidth=4    " indent width
 " set textwidth=79
 " set smarttab
 set expandtab       " expand tab to space
-
 set backupskip=/tmp/*,/private/tmp/*
-
+"窗口改变时等分窗口大小
 au VimResized * exe "normal! \<c-w>="
 
 autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
@@ -389,3 +388,16 @@ noremap Y y$
 " 使用 "\V" 会使得其后的模式中只有反斜杠有特殊的意义。"very nomagic"
 nnoremap / /\v
 vnoremap / /\v
+" 确保查找在屏幕中
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+"terminal like control
+inoremap <c-a> <esc>I
+inoremap <c-e> <esc>A
+
+"fold
+nnoremap <space> za
+vnoremap <space> za
+
+" onoremap

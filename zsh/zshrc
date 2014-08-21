@@ -49,11 +49,12 @@ source $ZSH/oh-my-zsh.sh
 # bindkey -v
 # bindkey '^R' history-incremental-search-backward
 
-export PATH="/usr/local/bin:usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:"
+export PATH="/usr/local/bin:usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
-export QUICK_COCOS2DX_ROOT=~/Documents/programming/code/quick-cocos2d-x
+export QUICK_COCOS2DX_ROOT=~/Documents/code/Project2/trunk/Developer/3rdlib/quick-cocos2d-x-2.2.5
+
 export COCOS2DX_ROOT=${QUICK_COCOS2DX_ROOT}/lib/cocos2d-x
-export CODE=/Users/imbahom_mbp/Documents/programming/code
+export CODE=~/Documents/code
 export TIPS=$CODE/myKnowledgeTips
 # for golang
 export GOPATH=$CODE/go
@@ -71,7 +72,7 @@ if [[ -n $SSH_CONNECTION ]]; then export EDITOR='vim' else export EDITOR='mvim'
 fi
 
 #ec2-api-tool
-export JAVA_HOME="$(/usr/libexec/java_home)"
+# export JAVA_HOME="$(/usr/libexec/java_home)"
 # export AWS_ACCESS_KEY="AKIAJVEYNE5OZKTB2BWQ"
 # export AWS_SECRET_KEY="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"
 # export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.6.13.0/libexec"
@@ -84,4 +85,18 @@ export JAVA_HOME="$(/usr/libexec/java_home)"
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 alias rm="trash"
+
+function svndquest(){
+    svn status | awk '{if($1=="?") print$2}' | xargs rm
+}
+function svndbang(){
+    svn status | awk '{if($1=="1") print$2}' | xargs svn delete
+}
+function svnaquest(){
+    svn status | awk '{if($1=="?") print$2}' | xargs svn add
+}
+#use function define a alias , u dont have to worry about quote, u can just use syntax in terminal
+# alias svndbang="svn st | awk  '{if(\$1==\"!\")  print\$2}'  |  xargs  svn  delete"
+# alias svndquest="svn st | awk  {if(\$1==\"?\")  print\$2}  |  xargs  rm"
+# alias svnaquest="svn st | awk  {if(\$1==\"?\")  print\$2}  |  xargs  svn  add"
 
