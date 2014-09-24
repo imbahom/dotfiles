@@ -19,7 +19,7 @@ Bundle 'imbahom/quick-x.vim'
 "-----------------
 " Shell
 " ----------------
-Bundle 'Shougo/vimshell.vim'
+" Bundle 'Shougo/vimshell.vim'
 " Bundle 'Shougo/vimproc'
 "------------------
 " Code Completions
@@ -44,11 +44,11 @@ Bundle 'Lokaltog/vim-easymotion'
 "--------------
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'sjl/gundo.vim'
+" Bundle 'sjl/gundo.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle "VisIncr"
-Bundle "terryma/vim-multiple-cursors"
+" Bundle 'terryma/vim-multiple-cursors'
 
 "--------------
 " IDE features
@@ -61,7 +61,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/syntastic'
-Bundle 'bronson/vim-trailing-whitespace'
+" Bundle 'bronson/vim-trailing-whitespace'
 
 "-------------
 " Other Utils
