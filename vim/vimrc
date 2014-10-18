@@ -20,7 +20,7 @@ Bundle 'imbahom/quick-x.vim'
 " Shell
 " ----------------
 Bundle 'Shougo/vimshell.vim'
-Bundle 'Shougo/vimproc'
+" Bundle 'Shougo/vimproc'
 "------------------
 " Code Completions
 "------------------
@@ -36,7 +36,6 @@ Bundle 'tomtom/tlib_vim'
 "-----------------
 " Fast navigation
 "-----------------
-Bundle 'tsaleh/vim-matchit'
 Bundle 'Lokaltog/vim-easymotion'
 
 "--------------
@@ -61,7 +60,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/syntastic'
-Bundle 'bronson/vim-trailing-whitespace'
+" Bundle 'bronson/vim-trailing-whitespace'
 
 "-------------
 " Other Utils
@@ -81,6 +80,10 @@ Bundle 'bronson/vim-trailing-whitespace'
 
 "------- Go ----------
 "Bundle 'jnwhiteh/vim-golang'
+Bundle 'dgryski/vim-godef'
+Bundle 'cespare/vim-golang'
+" Bundle 'fatih/vim-go'
+Bundle 'Blackrush/vim-gocode'
 
 "------- FPs ------
 Bundle 'kien/rainbow_parentheses.vim'
@@ -174,6 +177,8 @@ autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 
+" autocmd BufWritePre *.go :Fmt
+
 " syntax support
 autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
 " js
@@ -248,6 +253,34 @@ if executable('coffeetags')
                 \ ]
                 \ }
 endif
+
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " Nerd Tree
 let NERDChristmasTree=0
