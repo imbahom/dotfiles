@@ -49,7 +49,7 @@ source $ZSH/oh-my-zsh.sh
 # bindkey -v
 # bindkey '^R' history-incremental-search-backward
 
-export PATH="/usr/local/bin:usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="/Users/zhanghom/bin:/usr/local/bin:usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 export QUICK_COCOS2DX_ROOT=~/Documents/code/Project2/trunk/Developer/3rdlib/quick-cocos2d-x-2.2.5
 
@@ -78,3 +78,13 @@ fi
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 alias rm="trash"
+
+# exec > >(tee -a ~/$$.out)
+# PROMPT_COMMAND='LASTLINE=$(tail -n 1 ~/$$.out)'
+# trap 'rm ~/$$.out' EXIT
+
+function startWork(){
+    python ~/.dotfiles/zsh/startWork.py
+}
+
+
