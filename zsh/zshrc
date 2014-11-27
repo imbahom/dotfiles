@@ -86,7 +86,8 @@ alias rm="trash"
 # trap 'rm ~/$$.out' EXIT
 
 function startWork(){
-    python ~/.dotfiles/zsh/startWork.py
+    cmd="'cd ~/Documents/code/Project2/trunk/Developer/client/scripts && vim **/*.lua'"
+    python ~/.dotfiles/zsh/startWork.py $cmd
 }
 
 
