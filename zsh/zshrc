@@ -5,8 +5,8 @@ ZSH=$HOME/.oh-my-zsh
 # you set this to "random", it'll load a random theme each time that oh-my-zsh
 # is loaded.
 # ZSH_THEME="random"
-# ZSH_THEME="rgm"
-ZSH_THEME="dieter"
+ZSH_THEME="rgm"
+# ZSH_THEME="dieter"
 
 # Example aliases alias zshconfig="mate ~/.zshrc" alias ohmyzsh="mate
 # ~/.oh-my-zsh"
@@ -52,11 +52,11 @@ source $ZSH/oh-my-zsh.sh
 # bindkey '^R' history-incremental-search-backward
 
 export PATH="/Users/zhanghom/bin:/usr/local/bin:usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export CODE=/Users/zhanghom/Documents/programming/code
 # export MANPATH="/usr/local/man:$MANPATH"
-export QUICK_COCOS2DX_ROOT=~/Documents/code/Project2/trunk/Developer/3rdlib/quick-cocos2d-x-2.2.5
+export QUICK_COCOS2DX_ROOT=$CODE/Project2/trunk/Developer/3rdlib/quick-cocos2d-x-2.2.5
 
 export COCOS2DX_ROOT=${QUICK_COCOS2DX_ROOT}/lib/cocos2d-x
-export CODE=~/Documents/programming/code
 export TIPS=$CODE/myKnowledgeTips
 # for golang
 export GOPATH=$CODE/go
@@ -85,8 +85,9 @@ alias rm="trash"
 # PROMPT_COMMAND='LASTLINE=$(tail -n 1 ~/$$.out)'
 # trap 'rm ~/$$.out' EXIT
 
+alias tma="tmux attach"
 function startWork(){
-    cmd="'cd ~/Documents/code/Project2/trunk/Developer/client/scripts && vim **/*.lua'"
+    cmd="'cd $CODE/Project2/trunk/Developer/client/scripts && vim **/*.lua'"
     python ~/.dotfiles/zsh/startWork.py $cmd
 }
 
