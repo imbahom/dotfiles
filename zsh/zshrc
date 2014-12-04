@@ -80,6 +80,7 @@ fi
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 alias rm="trash"
+alias netspeed="vnstat -l -i en0"
 
 # exec > >(tee -a ~/$$.out)
 # PROMPT_COMMAND='LASTLINE=$(tail -n 1 ~/$$.out)'

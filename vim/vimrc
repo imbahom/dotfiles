@@ -53,13 +53,10 @@ Bundle "VisIncr"
 " IDE features
 "--------------
 Bundle 'scrooloose/nerdtree'
-" Bundle 'humiaozuzu/TabBar'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
-" Bundle 'Lokaltog/vim-powerline'
-" Bundle 'Lokaltog/powerline'
 Bundle 'scrooloose/syntastic'
 Bundle 'bling/vim-airline'
 
@@ -220,15 +217,6 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 
-" tabbar
-let g:Tb_MaxSize = 2
-let g:Tb_TabWrap = 1
-
-hi Tb_Normal guifg=white ctermfg=white
-hi Tb_Changed guifg=green ctermfg=green
-hi Tb_VisibleNormal ctermbg=252 ctermfg=235
-hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
-
 " easy-motion
 let g:EasyMotion_leader_key = '<Leader>'
 
@@ -264,32 +252,32 @@ if executable('coffeetags')
 endif
 
 let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
+            \ 'ctagstype' : 'go',
+            \ 'kinds'     : [
+            \ 'p:package',
+            \ 'i:imports:1',
+            \ 'c:constants',
+            \ 'v:variables',
+            \ 't:types',
+            \ 'n:interfaces',
+            \ 'w:fields',
+            \ 'e:embedded',
+            \ 'm:methods',
+            \ 'r:constructor',
+            \ 'f:functions'
+            \ ],
+            \ 'sro' : '.',
+            \ 'kind2scope' : {
+            \ 't' : 'ctype',
+            \ 'n' : 'ntype'
+            \ },
+            \ 'scope2kind' : {
+            \ 'ctype' : 't',
+            \ 'ntype' : 'n'
+            \ },
+            \ 'ctagsbin'  : 'gotags',
+            \ 'ctagsargs' : '-sort -silent'
+            \ }
 
 " Nerd Tree
 let NERDChristmasTree=0
@@ -438,4 +426,7 @@ inoremap <c-e> <esc>A
 nnoremap <space> za
 vnoremap <space> za
 
+if has("autocmd")
+    autocmd bufwritepost .vimrc source $MYVIMRC
+endif
 " onoremap
