@@ -53,7 +53,7 @@ Bundle "VisIncr"
 " IDE features
 "--------------
 Bundle 'scrooloose/nerdtree'
-Bundle 'humiaozuzu/TabBar'
+" Bundle 'humiaozuzu/TabBar'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
 Bundle 'kien/ctrlp.vim'
@@ -122,15 +122,17 @@ syntax on
 " Vim UI
 "--------
 "color scheme
+set t_Co=256
 set background=light
 if has("gui_running")
-    color solarized
 
     " highlight current line
     au WinLeave * set nocursorline nocursorcolumn
     au WinEnter * set cursorline cursorcolumn
     set cursorline cursorcolumn
 endif
+colorscheme solarized
+let g:airline_theme="powerlineish"
 
 " search
 set incsearch
