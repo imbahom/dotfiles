@@ -14,7 +14,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'imbahom/widget.vim'
-Bundle 'imbahom/quick-x.vim'
+Bundle 'imbahom/quickX'
 
 "-----------------
 " Shell
@@ -429,4 +429,4 @@ vnoremap <space> za
 if has("autocmd")
     autocmd bufwritepost .vimrc source $MYVIMRC
 endif
-" onoremap
+
