@@ -12,15 +12,18 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
+" let g:vundle_default_git_proto = "git"
 
 Bundle 'imbahom/widget.vim'
 Bundle 'imbahom/quickX'
+
 
 "-----------------
 " Shell
 " ----------------
 " Bundle 'Shougo/vimshell.vim'
 " Bundle 'Shougo/vimproc'
+" Bundle 'vim-scripts/Conque-Shell'
 "------------------
 " Code Completions
 "------------------
@@ -75,6 +78,9 @@ Bundle 'bling/vim-airline'
 
 "------- Ruby --------
 " Bundle 'tpope/vim-endwise'
+
+"------- Lua --------
+Bundle 'xolox/vim-lua-inspect'
 
 "------- Go ----------
 "Bundle 'jnwhiteh/vim-golang'
@@ -148,7 +154,7 @@ set t_Co=256                                                      " Explicitly t
 set mouse=a                                                       " use mouse in all modes
 set report=0                                                      " always report number of lines changed                "
 set nowrap                                                        " dont wrap lines
-set scrolloff=5                                                   " 5 lines above/below cursor when scrolling
+set scrolloff=0                                                   " 5 lines above/below cursor when scrolling
 " set showbreak=>\
 " set cpoptions+=n
 " make screen more clear and i prefer to use easy motion instead
@@ -172,6 +178,7 @@ set shiftwidth=4    " indent width
 " set smarttab
 set expandtab       " expand tab to space
 set backupskip=/tmp/*,/private/tmp/*
+
 "窗口改变时等分窗口大小
 au VimResized * exe "normal! \<c-w>="
 
@@ -222,7 +229,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 
 " Tagbar
 let g:tagbar_left=1
-let g:tagbar_width=30
+let g:tagbar_width=60
 let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
@@ -281,7 +288,7 @@ let g:tagbar_type_go = {
 
 " Nerd Tree
 let NERDChristmasTree=0
-let NERDTreeWinSize=30
+let NERDTreeWinSize=60
 let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 " let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
@@ -295,10 +302,6 @@ let NERDCompactSexyComs=1
 
 " ZenCoding
 let g:user_zen_expandabbr_key='<C-j>'
-
-" powerline
-"let g:Powerline_symbols = 'fancy'
-" let g:Powerline_loaded = 0
 
 " NeoComplCache
 let g:neocomplcache_enable_at_startup=1
@@ -336,7 +339,6 @@ nmap <F5> :TagbarToggle<cr>
 nmap <F6> :NERDTreeToggle<cr>
 " nmap <F3> :GundoToggle<cr>
 nmap <F4> :IndentGuidesToggle<cr>
-nmap  <D-/> :
 nnoremap <leader>a :Ack
 nnoremap <leader>v V`]
 
@@ -381,27 +383,16 @@ if has("gui_running")
     set showtabline=2
     set columns=140
     set lines=40
-    noremap <D-M-Left> :tabprevious<cr>
-    noremap <D-M-Right> :tabnext<cr>
-    map <D-1> 1gt
-    map <D-2> 2gt
-    map <D-3> 3gt
-    map <D-4> 4gt
-    map <D-5> 5gt
-    map <D-6> 6gt
-    map <D-7> 7gt
-    map <D-8> 8gt
-    map <D-9> 9gt
-    map <D-0> :tablast<CR>
 endif
 
-" Unmap F1, I don't use it, I prefer :help
-noremap <F1> <nop>
+noremap <S-Left> :tabprevious<CR>
+noremap <S-Right> :tabnext<CR>
 
 " Unmap K, which normally pulls up the man(1) page for a given binary or
 " function; I don't find this terribly helpful in most filetypes and often hit
 " it accidentally
 nnoremap K <nop>
+vnoremap K <nop>
 
 " Change and delete with C and D both cut off the remainder of the line from
 " the cursor, but Y yanks the whole line, which is inconsistent (and can be
@@ -425,8 +416,4 @@ inoremap <c-e> <esc>A
 "fold
 nnoremap <space> za
 vnoremap <space> za
-
-if has("autocmd")
-    autocmd bufwritepost .vimrc source $MYVIMRC
-endif
 
