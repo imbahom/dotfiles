@@ -81,6 +81,7 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 alias rm="trash"
 alias netspeed="vnstat -l -i en0"
+alias myscp='rsync --progress --partial --av'
 
 # exec > >(tee -a ~/$$.out)
 # PROMPT_COMMAND='LASTLINE=$(tail -n 1 ~/$$.out)'
@@ -117,3 +118,5 @@ end tell
 return
 EOF
 }
+
+

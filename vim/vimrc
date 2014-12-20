@@ -1,6 +1,14 @@
 if exists("$QUICK_COCOS2DX_ROOT")
-    " set tags+=/Users/imbahom_mbp/Documents/programming/code/quick-cocos2d-x/lib/cocos2d-x/tags
     let &tags=$QUICK_COCOS2DX_ROOT."/lib/cocos2d-x/tags"
+    set tags+=./tags;
+
+    " let s:quickTagPath = $QUICK_COCOS2DX_ROOT."lib/cocos2d-x/tags"
+    " set tags=$QUICK_COCOS2DX_ROOT."lib/cocos2d-x/tags",~/.vimtags
+    " set tags=~/.vimtags,s:quickTagPath
+    " set tags=s:quickTagPath
+
+    " tag test here
+    " CCSprite test1
 endif
 
 set nocompatible               " be iMproved
@@ -18,6 +26,7 @@ Bundle 'imbahom/widget.vim'
 Bundle 'imbahom/quickX'
 
 
+Bundle 'xolox/vim-misc'
 "-----------------
 " Shell
 " ----------------
@@ -40,6 +49,7 @@ Bundle 'tomtom/tlib_vim'
 " Fast navigation
 "-----------------
 Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'xolox/vim-easytags'
 
 "--------------
 " Fast editing
@@ -80,7 +90,8 @@ Bundle 'bling/vim-airline'
 " Bundle 'tpope/vim-endwise'
 
 "------- Lua --------
-Bundle 'xolox/vim-lua-inspect'
+" Bundle 'xolox/vim-lua-inspect'
+
 
 "------- Go ----------
 "Bundle 'jnwhiteh/vim-golang'
@@ -334,12 +345,16 @@ let g:SuperTabRetainCompletionType=2
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
+" easytags
+
+
 " Keybindings for plugin toggle
 nmap <F5> :TagbarToggle<cr>
 nmap <F6> :NERDTreeToggle<cr>
 " nmap <F3> :GundoToggle<cr>
 nmap <F4> :IndentGuidesToggle<cr>
-nnoremap <leader>a :Ack
+" nnoremap <leader>a :Ack
+nnoremap <leader>a :Ack <c-r>=expand("<cword>")<CR>
 nnoremap <leader>v V`]
 
 "------------------
@@ -350,7 +365,7 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-
+ 
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
             \ if ! exists("g:leave_my_cursor_position_alone") |
