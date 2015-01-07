@@ -56,6 +56,10 @@ export CODE=/Users/zhanghom/Documents/programming/code
 # export MANPATH="/usr/local/man:$MANPATH"
 export QUICK_COCOS2DX_ROOT=$CODE/Project2/trunk/Developer/3rdlib/quick-cocos2d-x-2.2.5
 
+export ANDROID_NDK_ROOT=~/Documents/NDK/android-ndk-r9d
+export ANDROID_SDK_ROOT=~/Documents/android-sdk-macosx
+export ANDROID_HOME=$ANDROID_SDK_ROOT
+
 export COCOS2DX_ROOT=${QUICK_COCOS2DX_ROOT}/lib/cocos2d-x
 export TIPS=$CODE/myKnowledgeTips
 # for golang
