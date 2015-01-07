@@ -23,7 +23,7 @@ else
     ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
 fi
 
-if [ -e ~/.zshrc ]; then
+if [ -e ~/.tmux.conf ]; then
     echo "tmux.conf already exist"
 else
     ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
