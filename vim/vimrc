@@ -36,14 +36,15 @@ Bundle 'xolox/vim-misc'
 "------------------
 " Code Completions
 "------------------
-Bundle 'Shougo/neocomplcache'
 Bundle 'honza/vim-snippets'
-Bundle 'ervandew/supertab'
+" Bundle 'ervandew/supertab'
 "Bundle 'snipmate-snippets'
 Bundle 'Raimondi/delimitMate'
 "------ snipmate dependencies -------
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
+Bundle "garbas/vim-snipmate"
+
 
 "-----------------
 " Fast navigation
@@ -109,13 +110,13 @@ Bundle 'Blackrush/vim-gocode'
 "--------------
 " Color Schemes
 "--------------
-"Bundle 'rickharris/vim-blackboard'
+Bundle 'rickharris/vim-blackboard'
 Bundle 'altercation/vim-colors-solarized'
-"Bundle 'rickharris/vim-monokai'
-""Bundle 'tpope/vim-vividchalk'
-"Bundle 'Lokaltog/vim-distinguished'
-"Bundle 'chriskempson/vim-tomorrow-theme'
-"Bundle 'fisadev/fisa-vim-colorscheme'
+Bundle 'rickharris/vim-monokai'
+Bundle 'tpope/vim-vividchalk'
+Bundle 'Lokaltog/vim-distinguished'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'fisadev/fisa-vim-colorscheme'
 
 filetype plugin indent on     " required!
 
@@ -137,7 +138,7 @@ syntax on
 "--------
 "color scheme
 set t_Co=256
-set background=light
+set background=dark
 if has("gui_running")
 
     " highlight current line
@@ -162,7 +163,9 @@ set nocompatible
 set confirm                                                       " prompt when existing from an unsaved file
 set backspace=indent,eol,start                                    " More powerful backspacing
 set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
-set mouse=a                                                       " use mouse in all modes
+if has("GUI")
+    set mouse=a                                                       " use mouse in all modes
+endif
 set report=0                                                      " always report number of lines changed                "
 set nowrap                                                        " dont wrap lines
 set scrolloff=0                                                   " 5 lines above/below cursor when scrolling
@@ -311,23 +314,7 @@ let NERDSpaceDelims=1
 " nmap <D-/> :NERDComToggleComment<cr>
 let NERDCompactSexyComs=1
 
-" ZenCoding
-let g:user_zen_expandabbr_key='<C-j>'
-
-" NeoComplCache
-let g:neocomplcache_enable_at_startup=1
-let g:neoComplcache_disableautocomplete=1
-"let g:neocomplcache_enable_underbar_completion = 1
-"let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 set completeopt-=preview
-
-imap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-imap <C-l> <Plug>(neocomplcache_snippets_force_jump)
-smap <C-l> <Plug>(neocomplcache_snippets_force_jump)
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -336,17 +323,26 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
+" snippet
+" let g:snipMate = {}
+" let g:snipMate.scope_aliases = {}
+" let g:snipMate.scope_aliases['ruby'] = 'ruby,rails'
+" let g:snipMate.scope_aliases['lua'] = 'lua'
+
 " SuperTab
-"let g:SuperTabDefultCompletionType='context'
+" let g:SuperTabDefultCompletionType='context'
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 let g:SuperTabRetainCompletionType=2
 
 " ctrlp
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+" use regex mode as default
+let g:ctrlp_regexp = 1
+" search in buffers as default
+let g:ctrlp_cmd = 'CtrlPBuffer'
 
 " easytags
-
 
 " Keybindings for plugin toggle
 nmap <F8> :TagbarToggle<cr>
@@ -365,7 +361,7 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
- 
+
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
             \ if ! exists("g:leave_my_cursor_position_alone") |
@@ -431,4 +427,5 @@ inoremap <c-e> <esc>A
 "fold
 nnoremap <space> za
 vnoremap <space> za
+
 
