@@ -25,6 +25,9 @@ Bundle 'gmarik/vundle'
 Bundle 'imbahom/widget.vim'
 Bundle 'imbahom/quickX'
 
+Bundle 'vimwiki/vimwiki'
+" Bundle 'vim-pandoc/vim-pandoc'
+" Bundle 'vim-pandoc/vim-pandoc-syntax'
 
 Bundle 'xolox/vim-misc'
 "-----------------
@@ -84,7 +87,7 @@ Bundle 'bling/vim-airline'
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "------- markup language -------
-" Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-markdown'
 " Bundle 'timcharper/textile.vim'
 
 "------- Ruby --------
@@ -118,7 +121,11 @@ Bundle 'Lokaltog/vim-distinguished'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'fisadev/fisa-vim-colorscheme'
 
+" enable filetype dectection and ft specific plugin/indent
 filetype plugin indent on     " required!
+filetype plugin on
+" enable syntax hightlight and completion
+syntax on
 
 let mapleader=","
 
@@ -127,26 +134,14 @@ set helplang=cn
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set encoding=utf-8
 
-" enable filetype dectection and ft specific plugin/indent
-filetype plugin indent on
-
-" enable syntax hightlight and completion
-syntax on
-
 "--------
 " Vim UI
 "--------
 "color scheme
 set t_Co=256
 set background=dark
-if has("gui_running")
-
-    " highlight current line
-    au WinLeave * set nocursorline nocursorcolumn
-    au WinEnter * set cursorline cursorcolumn
-    set cursorline cursorcolumn
-endif
-colorscheme solarized
+colorscheme Tomorrow-Night-Eighties
+" colorscheme solarized
 let g:airline_theme="powerlineish"
 
 " search
@@ -158,13 +153,22 @@ set smartcase
 
 " editor settings
 set history=1000
-set nocompatible
 " set nofoldenable                                                  " disable folding"
 set confirm                                                       " prompt when existing from an unsaved file
 set backspace=indent,eol,start                                    " More powerful backspacing
 set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
-if has("GUI")
+if has("gui_running")
     set mouse=a                                                       " use mouse in all modes
+    set go=aAce  " remove toolbar
+    set transparency=0
+    set guifont=Monaco:h16
+    set showtabline=2
+    set columns=140
+    set lines=40
+    " highlight current line
+    au WinLeave * set nocursorline nocursorcolumn
+    au WinEnter * set cursorline cursorcolumn
+    set cursorline cursorcolumn
 endif
 set report=0                                                      " always report number of lines changed                "
 set nowrap                                                        " dont wrap lines
@@ -203,6 +207,13 @@ autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
 " autocmd BufWritePre *.go :Fmt
 
@@ -311,17 +322,9 @@ let NERDTreeWinPos = "right"
 
 " nerdcommenter
 let NERDSpaceDelims=1
-" nmap <D-/> :NERDComToggleComment<cr>
 let NERDCompactSexyComs=1
 
 set completeopt-=preview
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
 " snippet
 " let g:snipMate = {}
@@ -344,14 +347,25 @@ let g:ctrlp_cmd = 'CtrlPBuffer'
 
 " easytags
 
-" Keybindings for plugin toggle
-nmap <F8> :TagbarToggle<cr>
-nmap <F6> :NERDTreeToggle<cr>
-" nmap <F3> :GundoToggle<cr>
-nmap <F4> :IndentGuidesToggle<cr>
-" nnoremap <leader>a :Ack
-nnoremap <leader>a :Ack <c-r>=expand("<cword>")<CR>
-nnoremap <leader>v V`]
+" vimwiki
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+            \ 'path_html': '~/vimwiki/html/',
+            \ 'template_path': '~/vimwiki/template/',
+            \ 'template_default': 'template',
+            \ 'template_ext': '.html',
+            \ 'syntax': 'markdown', 
+            \ 'ext': '.md',
+            \ 'custom_wiki2html': '~/pandoc.sh'}]
+
+"默认情况下，VimWiki会为驼峰形式的单词，标记为新wiki页面。可以关闭这个选项
+let g:vimwiki_camel_case = 0
+" 自定义的HTML页面
+" 如果生成HTML的目录下有手工hack的html文件，也会被无情的删除，可以通过 g:vimwiki_user_htmls 选项配置用户html文件，不被自动删除。
+let g:vimwiki_user_htmls = 'contack.html'
+" 配置多个VimWiki项目
+" let g:vimwiki_list = [{'path':'~/vimwiki/'}, {'path':'~/pwiki'}]
+
+
 
 "------------------
 " Useful Functions
@@ -386,15 +400,6 @@ nnoremap ; :
 :command! Qa qa
 :command! QA qa
 
-" for macvim
-if has("gui_running")
-    set go=aAce  " remove toolbar
-    set transparency=0
-    set guifont=Monaco:h18
-    set showtabline=2
-    set columns=140
-    set lines=40
-endif
 
 noremap <S-Left> :tabprevious<CR>
 noremap <S-Right> :tabnext<CR>
@@ -429,3 +434,11 @@ nnoremap <space> za
 vnoremap <space> za
 
 
+" Keybindings for plugin toggle
+nmap <F8> :TagbarToggle<cr>
+nmap <F6> :NERDTreeToggle<cr>
+" nmap <F3> :GundoToggle<cr>
+nmap <F4> :IndentGuidesToggle<cr>
+" nnoremap <leader>a :Ack
+nnoremap <leader>a :Ack <c-r>=expand("<cword>")<CR>
+nnoremap <leader>v V`]
