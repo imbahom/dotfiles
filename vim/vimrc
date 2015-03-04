@@ -349,9 +349,11 @@ let g:ctrlp_cmd = 'CtrlPBuffer'
 
 " vimwiki
 let g:vimwiki_list = [{'path':'~/vimwiki/',
+            \ 'path_html': '~/vimwiki/www/',
             \ 'template_path': '~/vimwiki/template/',
             \ 'template_default': 'default.tpl',
             \ 'css_name': 'static/css/bootstrap.css',
+            \ 'nested': {'python': 'python', 'c++': 'cpp'},
             \ 'ext': '.wiki'}]
 
 " pandoc to html
