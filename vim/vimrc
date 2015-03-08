@@ -163,8 +163,9 @@ if has("gui_running")
     set transparency=0
     set guifont=Monaco:h16
     set showtabline=2
-    set columns=140
-    set lines=40
+    "maximum window size
+    set columns=999
+    set lines=999
     " highlight current line
     au WinLeave * set nocursorline nocursorcolumn
     au WinEnter * set cursorline cursorcolumn
@@ -344,8 +345,6 @@ let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 let g:ctrlp_regexp = 1
 " search in buffers as default
 let g:ctrlp_cmd = 'CtrlPBuffer'
-
-" easytags
 
 " vimwiki
 let g:vimwiki_list = [{'path': '~/vimwiki/',
