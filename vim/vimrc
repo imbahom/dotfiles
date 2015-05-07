@@ -1,16 +1,3 @@
-if exists("$QUICK_COCOS2DX_ROOT")
-    let &tags=$QUICK_COCOS2DX_ROOT."/lib/cocos2d-x/tags"
-    set tags+=./tags;
-
-    " let s:quickTagPath = $QUICK_COCOS2DX_ROOT."lib/cocos2d-x/tags"
-    " set tags=$QUICK_COCOS2DX_ROOT."lib/cocos2d-x/tags",~/.vimtags
-    " set tags=~/.vimtags,s:quickTagPath
-    " set tags=s:quickTagPath
-
-    " tag test here
-    " CCSprite test1
-endif
-
 set nocompatible               " be iMproved
 filetype off                   " required!
 

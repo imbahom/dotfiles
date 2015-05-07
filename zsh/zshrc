@@ -54,14 +54,12 @@ source $ZSH/oh-my-zsh.sh
 export PATH=~/bin:/usr/local/bin:usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 export CODE=~/Documents/programming/code
 # export MANPATH="/usr/local/man:$MANPATH"
-export QUICK_COCOS2DX_ROOT=$CODE/Project2/trunk/Developer/3rdlib/quick-cocos2d-x-2.2.5
+export QUICK_V3_ROOT=`cat ~/.QUICK_V3_ROOT`
 
-export ANDROID_NDK_ROOT=~/Documents/NDK/android-ndk-r9d
-export ANDROID_SDK_ROOT=~/Documents/android-sdk-macosx
+export ANDROID_SDK_ROOT=$CODE/android-sdk-macosx
 export ANDROID_HOME=$ANDROID_SDK_ROOT
+export NDK_ROOT=$CODE/NDK/android-ndk-r9b
 
-export COCOS2DX_ROOT=${QUICK_COCOS2DX_ROOT}/lib/cocos2d-x
-export TIPS=$CODE/myKnowledgeTips
 # for golang
 export GOPATH=$CODE/go
 export PATH=$PATH:$GOPATH/bin
@@ -72,6 +70,8 @@ export IGNOREEOF=1
 LANG=zh_CN.UTF-8
 # LANG=zh_CN
 export LANG
+
+export TERM=xterm-256color
 
 #Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then export EDITOR='vim' else export EDITOR='mvim'
