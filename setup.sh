@@ -30,6 +30,12 @@ else
     ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 fi
 
+if [ -e ~/.proxychains ]; then
+    echo ".proxychains folder already exist"
+else
+    ln -s ~/.dotfiles/proxychains ~/.proxychains
+fi
+
 echo "BundleInstall vim plugins"
 echo "tmux ==> prefix + I to install plugins that configed in tmux.conf file"
 echo "prefix + U to update installed plugins"
