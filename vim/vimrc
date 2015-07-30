@@ -1,10 +1,11 @@
+" vim:tabstop=2:shiftwidth=4:expandtab:foldmethod=marker:textwidth=79
 set nocompatible               " be iMproved
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
+" let Vundle manage Vundle"{{{
 " required!
 Bundle 'gmarik/vundle'
 " let g:vundle_default_git_proto = "git"
@@ -34,7 +35,6 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle "garbas/vim-snipmate"
-
 
 "-----------------
 " Fast navigation
@@ -108,6 +108,7 @@ Bundle 'tpope/vim-vividchalk'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'fisadev/fisa-vim-colorscheme'
+"}}}
 
 " enable filetype dectection and ft specific plugin/indent
 filetype plugin indent on     " required!
@@ -115,17 +116,14 @@ filetype plugin on
 " enable syntax hightlight and completion
 syntax on
 
-let mapleader=","
+"settings {{{
 
+let mapleader=","
 set helplang=cn
 " encoding dectection
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set encoding=utf-8
 
-"--------
-" Vim UI
-"--------
-"color scheme
 set t_Co=256
 if strftime("%H") < 12
   set background=light
@@ -144,10 +142,7 @@ let g:solarized_contrast="high"
 " let g:solarized_diffmode="normal"
 " let g:solarized_hitrail=0
 let g:solarized_menu=0
-
 colorscheme solarized
-let g:airline_theme="powerlineish"
-
 " search
 set incsearch
 set hlsearch
@@ -203,10 +198,9 @@ set shiftwidth=4    " indent width
 set expandtab       " expand tab to space
 set backupskip=/tmp/*,/private/tmp/*
 
+set completeopt-=preview"}}}
 
-"窗口改变时等分窗口大小
-au VimResized * exe "normal! \<c-w>="
-
+"filetype tabstop shiftwidth softtabstop textwidth"{{{
 autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
@@ -214,26 +208,23 @@ autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+"}}}
 
-" Enable omni completion.
+"filetype omni completion."{{{
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
+"}}}
 
 " autocmd BufWritePre *.go :Fmt
 
 " syntax support
-autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
-" js
-let g:html_indent_inctags = "html,body,head,tbody"
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1 = "inc"
+" autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
 
-"-----------------
-" Plugin settings
-"-----------------
+" Plugin settings"{{{
+let g:airline_theme="powerlineish"
 " Rainbow parentheses for Lisp and variants
 let g:rbpt_colorpairs = [
             \ ['brown',       'RoyalBlue3'],
@@ -256,10 +247,17 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 
-" easy-motion
-let g:EasyMotion_leader_key = '<Leader>'
+" js"{{{
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+"}}}
 
-" Tagbar
+" easy-motion"{{{
+let g:EasyMotion_leader_key = '<Leader>'
+"}}}
+
+" Tagbar"{{{
 let g:tagbar_left=1
 let g:tagbar_width=60
 let g:tagbar_autofocus = 1
@@ -317,8 +315,9 @@ let g:tagbar_type_go = {
             \ 'ctagsbin'  : 'gotags',
             \ 'ctagsargs' : '-sort -silent'
             \ }
+"}}}
 
-" Nerd Tree
+" Nerd Tree"{{{
 let NERDChristmasTree=0
 let NERDTreeWinSize=60
 let NERDTreeChDirMode=2
@@ -326,33 +325,36 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 " let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
 let NERDTreeShowBookmarks=1
 let NERDTreeWinPos = "right"
+"}}}
 
-" nerdcommenter
+" nerdcommenter"{{{
 let NERDSpaceDelims=1
 let NERDCompactSexyComs=1
+"}}}
 
-set completeopt-=preview
-
-" snippet
+" snippet"{{{
 " let g:snipMate = {}
 " let g:snipMate.scope_aliases = {}
 " let g:snipMate.scope_aliases['ruby'] = 'ruby,rails'
 " let g:snipMate.scope_aliases['lua'] = 'lua'
+"}}}
 
-" SuperTab
+" SuperTab"{{{
 " let g:SuperTabDefultCompletionType='context'
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 let g:SuperTabRetainCompletionType=2
+"}}}
 
-" ctrlp
+" ctrlp"{{{
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 " use regex mode as default
 let g:ctrlp_regexp = 1
 " search in buffers as default
 let g:ctrlp_cmd = 'CtrlPBuffer'
+"}}}
 
-" vimwiki
+" vimwiki"{{{
 let g:vimwiki_list = [{'path':'~/vimwiki/',
             \ 'path_html': '~/vimwiki/www/',
             \ 'template_path': '~/vimwiki/template/',
@@ -380,17 +382,17 @@ let g:vimwiki_camel_case = 0
 let g:vimwiki_user_htmls = 'contack.html,'
 " 配置多个VimWiki项目
 " let g:vimwiki_list = [{'path':'~/vimwiki/'}, {'path':'~/pwiki'}]
+"}}}
 
-
-
-"------------------
-" Useful Functions
-"------------------
+" some Useful Functions"{{{
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+
+"窗口改变时等分窗口大小
+au VimResized * exe "normal! \<c-w>="
 
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
@@ -407,7 +409,7 @@ cmap w!! w !sudo tee >/dev/null %
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " reload plugin without exit vim
-nmap <silent> <leader>rp :runtime! plugin/**/*.vim<CR>
+nmap <leader>rp :runtime! plugin/**/*.vim<CR>
 " eggcache vim
 nnoremap ; :
 :command! W w
@@ -461,3 +463,5 @@ nnoremap <leader>v V`]
 
 "need nerdcommenter
 nnoremap ÷ <leader>c<space>
+"}}}
+"}}}
