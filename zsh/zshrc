@@ -43,12 +43,14 @@ ZSH_THEME="rgm"
 # ~/.oh-my-zsh/plugins/*) Custom plugins may be added to
 # ~/.oh-my-zsh/custom/plugins/ Example format: plugins=(rails git textmate ruby
 # lighthouse)
-plugins=(git svn_plugin ruby osx emoji-clock encode64 themes xcode svn vagrant)
+plugins=(git svn git_imbahom svn_imbahom ruby osx emoji-clock encode64 themes xcode vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-# bindkey -v
+# using vi mode in zsh
+bindkey -v
+
 # bindkey '^R' history-incremental-search-backward
 
 export PATH=~/bin:/usr/local/bin:usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
@@ -56,12 +58,14 @@ export CODE=~/Documents/programming/code
 # export MANPATH="/usr/local/man:$MANPATH"
 export QUICK_V3_ROOT=`cat ~/.QUICK_V3_ROOT`
 
-export ANDROID_SDK_ROOT=$CODE/android-sdk-macosx
+# export ANDROID_SDK_ROOT=$CODE/dev_env/android_sdk
+export ANDROID_SDK_ROOT=~/Library/Android/sdk
 export ANDROID_HOME=$ANDROID_SDK_ROOT
-export NDK_ROOT=$CODE/NDK/android-ndk-r9b
+export NDK_ROOT=$CODE/dev_env/NDK/android-ndk-r9b
+export ANDROID_NDK_ROOT=$NDK_ROOT
 
 # for golang
-export GOPATH=$CODE/go
+export GOPATH=$CODE/dev_env/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 # specify that it must be pressed twice to exit:
@@ -81,7 +85,7 @@ fi
 
 # ssh export SSH_KEY_PATH="~/.ssh/dsa_id"
 #
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+# export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 alias rm="trash"
 alias netspeed="vnstat -l -i en0"

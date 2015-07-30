@@ -27,7 +27,7 @@ Bundle 'xolox/vim-misc'
 " Code Completions
 "------------------
 Bundle 'honza/vim-snippets'
-" Bundle 'ervandew/supertab'
+Bundle 'ervandew/supertab'
 "Bundle 'snipmate-snippets'
 Bundle 'Raimondi/delimitMate'
 "------ snipmate dependencies -------
@@ -39,6 +39,7 @@ Bundle "garbas/vim-snipmate"
 "-----------------
 " Fast navigation
 "-----------------
+Bundle 'gcmt/wildfire.vim'
 Bundle 'Lokaltog/vim-easymotion'
 " Bundle 'xolox/vim-easytags'
 
@@ -126,9 +127,25 @@ set encoding=utf-8
 "--------
 "color scheme
 set t_Co=256
-set background=dark
-colorscheme Tomorrow-Night-Eighties
-" colorscheme solarized
+if strftime("%H") < 12
+  set background=light
+else
+  set background=dark
+endif
+
+let g:solarized_bold=1
+" let g:solarized_termtrans=0
+" let g:solarized_degrade=0
+" let g:solarized_underline=1
+" let g:solarized_italic=1
+" let g:solarized_termcolors=16
+let g:solarized_contrast="high"
+" let g:solarized_visibility="normal"
+" let g:solarized_diffmode="normal"
+" let g:solarized_hitrail=0
+let g:solarized_menu=0
+
+colorscheme solarized
 let g:airline_theme="powerlineish"
 
 " search
@@ -148,7 +165,8 @@ if has("gui_running")
     set mouse=a                                                       " use mouse in all modes
     set go=aAce  " remove toolbar
     set transparency=0
-    set guifont=Monaco:h18
+    set guifont=Source\ Code\ Pro:h18
+    " set guifont=Monaco:h18
     set showtabline=2
     "maximum window size
     set columns=999
@@ -184,6 +202,7 @@ set shiftwidth=4    " indent width
 " set smarttab
 set expandtab       " expand tab to space
 set backupskip=/tmp/*,/private/tmp/*
+
 
 "窗口改变时等分窗口大小
 au VimResized * exe "normal! \<c-w>="
@@ -387,7 +406,8 @@ cmap w!! w !sudo tee >/dev/null %
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
+" reload plugin without exit vim
+nmap <silent> <leader>rp :runtime! plugin/**/*.vim<CR>
 " eggcache vim
 nnoremap ; :
 :command! W w
@@ -430,7 +450,6 @@ inoremap <c-e> <esc>A
 nnoremap <space> za
 vnoremap <space> za
 
-
 " Keybindings for plugin toggle
 nmap <F8> :TagbarToggle<cr>
 nmap <F6> :NERDTreeToggle<cr>
@@ -439,3 +458,6 @@ nmap <F4> :IndentGuidesToggle<cr>
 " nnoremap <leader>a :Ack
 nnoremap <leader>a :Ack <c-r>=expand("<cword>")<CR>
 nnoremap <leader>v V`]
+
+"need nerdcommenter
+nnoremap ÷ <leader>c<space>
