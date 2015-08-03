@@ -49,7 +49,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 # using vi mode in zsh
-bindkey -v
+# bindkey -v
 
 # bindkey '^R' history-incremental-search-backward
 

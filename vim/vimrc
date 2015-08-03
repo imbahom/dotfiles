@@ -28,9 +28,10 @@ Bundle 'xolox/vim-misc'
 " Code Completions
 "------------------
 Bundle 'honza/vim-snippets'
-Bundle 'ervandew/supertab'
+" Bundle 'ervandew/supertab'
 "Bundle 'snipmate-snippets'
 Bundle 'Raimondi/delimitMate'
+Bundle 'Valloric/YouCompleteMe'
 "------ snipmate dependencies -------
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
@@ -108,13 +109,13 @@ Bundle 'tpope/vim-vividchalk'
 Bundle 'Lokaltog/vim-distinguished'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'fisadev/fisa-vim-colorscheme'
-"}}}
 
 " enable filetype dectection and ft specific plugin/indent
 filetype plugin indent on     " required!
 filetype plugin on
 " enable syntax hightlight and completion
 syntax on
+"}}}
 
 "settings {{{
 
@@ -383,6 +384,7 @@ let g:vimwiki_user_htmls = 'contack.html,'
 " 配置多个VimWiki项目
 " let g:vimwiki_list = [{'path':'~/vimwiki/'}, {'path':'~/pwiki'}]
 "}}}
+"}}}
 
 " some Useful Functions"{{{
 " easier navigation between split windows
@@ -460,8 +462,4 @@ nmap <F4> :IndentGuidesToggle<cr>
 " nnoremap <leader>a :Ack
 nnoremap <leader>a :Ack <c-r>=expand("<cword>")<CR>
 nnoremap <leader>v V`]
-
-"need nerdcommenter
-nnoremap ÷ <leader>c<space>
-"}}}
 "}}}
