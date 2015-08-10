@@ -28,6 +28,7 @@ if [ -e ~/.tmux.conf ]; then
     echo "tmux.conf already exist"
 else
     ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+    ln -s ~/.dotfiles/tmux/tmux-osx.conf ~/.tmux-osx.conf
 fi
 
 if [ -e ~/.proxychains ]; then
