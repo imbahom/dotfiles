@@ -27,9 +27,9 @@ Bundle 'xolox/vim-misc'
 "------------------
 " Code Completions
 "------------------
+Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
-" Bundle 'ervandew/supertab'
-"Bundle 'snipmate-snippets'
+Bundle 'ervandew/supertab'
 Bundle 'Raimondi/delimitMate'
 Bundle 'Valloric/YouCompleteMe'
 "------ snipmate dependencies -------
@@ -127,9 +127,11 @@ set encoding=utf-8
 
 set t_Co=256
 if strftime("%H") < 12
-  set background=light
+    set background=light
+    colorscheme solarized
 else
-  set background=dark
+    set background=dark
+    colorscheme monokai
 endif
 
 let g:solarized_bold=1
@@ -143,7 +145,6 @@ let g:solarized_contrast="high"
 " let g:solarized_diffmode="normal"
 " let g:solarized_hitrail=0
 let g:solarized_menu=0
-colorscheme solarized
 " search
 set incsearch
 set hlsearch
@@ -227,6 +228,8 @@ autocmd FileType c setlocal omnifunc=ccomplete#Complete
 " Plugin settings"{{{
 let g:airline_theme="powerlineish"
 " Rainbow parentheses for Lisp and variants
+
+" blabla {{{ "
 let g:rbpt_colorpairs = [
             \ ['brown',       'RoyalBlue3'],
             \ ['Darkblue',    'SeaGreen3'],
@@ -247,6 +250,7 @@ let g:rbpt_colorpairs = [
             \ ]
 let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
+" }}} "
 
 " js"{{{
 let g:html_indent_inctags = "html,body,head,tbody"
@@ -333,16 +337,27 @@ let NERDSpaceDelims=1
 let NERDCompactSexyComs=1
 "}}}
 
-" snippet"{{{
-" let g:snipMate = {}
-" let g:snipMate.scope_aliases = {}
-" let g:snipMate.scope_aliases['ruby'] = 'ruby,rails'
-" let g:snipMate.scope_aliases['lua'] = 'lua'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" 为了使用tab作为UtilSnips的trigger，把YCM的default key-binding  改为 <C-TAB> and<C-S-TAB>
+" 然后把SuperTab的默认tab的行为设置为YCM的key-binding,完美解决
+"Utilsnips{{{
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 "}}}
+
+" YCM {{{ "
+let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+" }}} YCM "
 
 " SuperTab"{{{
 " let g:SuperTabDefultCompletionType='context'
-let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
+" let g:SuperTabDefaultCompletionType ='<C-X><C-U>'
+let g:SuperTabDefaultCompletionType ='<C-Tab>'
 let g:SuperTabRetainCompletionType=2
 "}}}
 
@@ -384,6 +399,8 @@ let g:vimwiki_user_htmls = 'contack.html,'
 " 配置多个VimWiki项目
 " let g:vimwiki_list = [{'path':'~/vimwiki/'}, {'path':'~/pwiki'}]
 "}}}
+
+
 "}}}
 
 " some Useful Functions"{{{
