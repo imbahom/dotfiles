@@ -1,15 +1,33 @@
 snippet setNode
 self:setNodeEventEnabled(true)
-onEnter
 
-onExit
+function $1:onEnter()
+end
+
+function $1:onExit()
+end
+$0
 endsnippet
 
-snippet imp
-import("...layout.package.${1}")
+snippet imp 
+,import("...layout.package.$1")
 endsnippet
 
 snippet im
-import("..layout.{1}")
+,import("..layout.$1")
 endsnippet
 
+snippet author
+---------------------------------------
+-- Author : ${1:imbahom}
+-- Date   : `date '+%Y-%m-%d %H:%M:%S'`
+---------------------------------------
+endsnippet
+
+snippet format
+string.format("$1",$2)
+endsnippet
+
+snippet cc.
+cc.$1:create($2)
+endsnippet
