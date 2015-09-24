@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'imbahom/widget.vim'
 Bundle 'imbahom/quickX'
+Bundle 'test'
 
 Bundle 'vimwiki/vimwiki'
 " Bundle 'vim-pandoc/vim-pandoc'
@@ -103,13 +104,13 @@ Bundle 'Blackrush/vim-gocode'
 "--------------
 " Color Schemes
 "--------------
-Bundle 'rickharris/vim-blackboard'
+" Bundle 'rickharris/vim-blackboard'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'rickharris/vim-monokai'
-Bundle 'tpope/vim-vividchalk'
-Bundle 'Lokaltog/vim-distinguished'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'fisadev/fisa-vim-colorscheme'
+" Bundle 'tpope/vim-vividchalk'
+" Bundle 'Lokaltog/vim-distinguished'
+" Bundle 'chriskempson/vim-tomorrow-theme'
+" Bundle 'fisadev/fisa-vim-colorscheme'
 
 " enable filetype dectection and ft specific plugin/indent
 filetype plugin indent on     " required!
@@ -149,6 +150,7 @@ else
 endif
 
 " search
+set noignorecase
 set incsearch
 set hlsearch
 "set highlight 	" conflict with highlight current line
@@ -182,7 +184,6 @@ set scrolloff=0                                                   " 5 lines abov
 " set showbreak=>\
 " set cpoptions+=n
 " make screen more clear and i prefer to use easy motion instead
-" set number                                                        " show line numbers
 set showmatch                                                     " show matching bracket (briefly jump)
 set showcmd                                                       " show typed command in status bar
 " set title                                                         " show file in titlebar
@@ -190,7 +191,8 @@ set laststatus=2                                                  " use 2 lines 
 set matchtime=2                                                   " show matching bracket for 0.2 seconds
 " set matchpairs+=<:>                                               " specially for html
 
-set relativenumber
+" set number                                                        " show line numbers
+" set relativenumber
 
 " Default Indentation
 set autoindent
@@ -355,6 +357,12 @@ let g:UltiSnipsEditSplit="vertical"
 " YCM {{{ "
 let g:ycm_key_list_select_completion = ['<C-Tab>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-S-Tab>', '<Up>']
+
+let g:ycm_disable_for_files_larger_than_kb = 1000
+let g:ycm_filetype_specific_completion_to_disable = {
+            \ 'gitcommit': 1,
+            \ 'lua': 0,
+            \}
 " }}} YCM "
 
 " SuperTab"{{{
@@ -405,17 +413,42 @@ let g:vimwiki_user_htmls = 'contack.html,'
 
 ""{{{ ctrlsf
 " nnoremap <leader>a :Ack
-nnoremap <leader>a :CtrlSF <c-r>=expand("<cword>")<CR>
+nnoremap <leader>a :CtrlSF -filetype lua -R <c-r>=expand("<cword>")<CR>
+" nnoremap <leader>a :CtrlSF <c-r>=expand("<cword>")<CR>
 " let g:ctrlsf_mapping = {
-    " \ "split": "<C-O>",
-    " \ }
+" \ "split": "<C-O>",
+" \ }
 let g:ctrlsf_position = 'left'
 
 "}}}
 
 "}}}
+" some Useful Functions and mapping"{{{
+" faster loading large file 
+let g:LargeFile = 1024 * 1024 * 5
+augroup LargeFile
+    autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+    " autocmd BufUnload * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | exec "set syntax=on" | endif
+augroup END
 
-" some Useful Functions"{{{
+function LargeFile()
+    " no syntax highlighting etc
+    set eventignore+=FileType
+    " set eventignore+=Syntax
+
+    " save memory when other file is viewed
+    setlocal bufhidden=unload
+
+    " is read-only (write with :w new_filename)
+    setlocal buftype=nowrite
+
+    " no undo possible
+    setlocal undolevels=-1
+
+    " display message
+    autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
+endfunction
+
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
