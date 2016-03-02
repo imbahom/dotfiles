@@ -11,8 +11,7 @@ Bundle 'gmarik/vundle'
 " let g:vundle_default_git_proto = "git"
 
 Bundle 'imbahom/widget.vim'
-Bundle 'imbahom/quickX'
-Bundle 'test'
+" Bundle 'imbahom/quickX'
 
 Bundle 'vimwiki/vimwiki'
 " Bundle 'vim-pandoc/vim-pandoc'
@@ -66,7 +65,7 @@ Bundle 'dyng/ctrlsf.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/syntastic'
-Bundle 'bling/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
 
 "-------------
 " Other Utils
@@ -129,6 +128,7 @@ set encoding=utf-8
 
 set t_Co=256
 colorscheme solarized
+set background=light
 let g:solarized_bold=1
 " let g:solarized_termtrans=0
 " let g:solarized_degrade=0
@@ -140,14 +140,14 @@ let g:solarized_contrast="high"
 " let g:solarized_diffmode="normal"
 " let g:solarized_hitrail=0
 let g:solarized_menu=0
-if strftime("%H") < 12
-    set background=light
-else
-    set background=dark
-    if has("gui_running")
-        colorscheme monokai
-    endif
-endif
+" if strftime("%H") < 12
+    " set background=light
+" else
+    " set background=dark
+    " if has("gui_running")
+        " colorscheme monokai
+    " endif
+" endif
 
 " search
 set noignorecase
@@ -191,8 +191,8 @@ set laststatus=2                                                  " use 2 lines 
 set matchtime=2                                                   " show matching bracket for 0.2 seconds
 " set matchpairs+=<:>                                               " specially for html
 
-" set number                                                        " show line numbers
-" set relativenumber
+set number                                                        " show line numbers
+set relativenumber
 
 " Default Indentation
 set autoindent
@@ -413,8 +413,8 @@ let g:vimwiki_user_htmls = 'contack.html,'
 
 ""{{{ ctrlsf
 " nnoremap <leader>a :Ack
-nnoremap <leader>a :CtrlSF -filetype lua -R <c-r>=expand("<cword>")<CR>
-" nnoremap <leader>a :CtrlSF <c-r>=expand("<cword>")<CR>
+" nnoremap <leader>a :CtrlSF -filetype lua -R <c-r>=expand("<cword>")<CR>
+nnoremap <leader>a :CtrlSF <c-r>=expand("<cword>")<CR>
 " let g:ctrlsf_mapping = {
 " \ "split": "<C-O>",
 " \ }
@@ -425,29 +425,29 @@ let g:ctrlsf_position = 'left'
 "}}}
 " some Useful Functions and mapping"{{{
 " faster loading large file 
-let g:LargeFile = 1024 * 1024 * 5
-augroup LargeFile
-    autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
-    " autocmd BufUnload * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | exec "set syntax=on" | endif
-augroup END
+" let g:LargeFile = 1024 * 1024 * 5
+" augroup LargeFile
+    " autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+    " " autocmd BufUnload * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | exec "set syntax=on" | endif
+" augroup END
 
-function LargeFile()
-    " no syntax highlighting etc
-    set eventignore+=FileType
-    " set eventignore+=Syntax
+" function LargeFile()
+    " " no syntax highlighting etc
+    " set eventignore+=FileType
+    " " set eventignore+=Syntax
 
-    " save memory when other file is viewed
-    setlocal bufhidden=unload
+    " " save memory when other file is viewed
+    " setlocal bufhidden=unload
 
-    " is read-only (write with :w new_filename)
-    setlocal buftype=nowrite
+    " " is read-only (write with :w new_filename)
+    " setlocal buftype=nowrite
 
-    " no undo possible
-    setlocal undolevels=-1
+    " " no undo possible
+    " setlocal undolevels=-1
 
-    " display message
-    autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
-endfunction
+    " " display message
+    " autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
+" endfunction
 
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
