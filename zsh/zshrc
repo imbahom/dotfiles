@@ -43,7 +43,7 @@ ZSH_THEME="rgm"
 # ~/.oh-my-zsh/plugins/*) Custom plugins may be added to
 # ~/.oh-my-zsh/custom/plugins/ Example format: plugins=(rails git textmate ruby
 # lighthouse)
-plugins=(git svn git_imbahom svn_imbahom ruby osx encode64 themes xcode vagrant node nvm npm)
+plugins=(git svn getip vpn_switch git_imbahom svn_imbahom ruby osx encode64 themes xcode vagrant node nvm npm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -53,16 +53,17 @@ source $ZSH/oh-my-zsh.sh
 
 # bindkey '^R' history-incremental-search-backward
 
-export PATH=~/bin:/usr/local/bin:usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+export PATH=~/bin:/usr/local/bin:usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/sbin
 export CODE=~/Documents/programming/code
 # export MANPATH="/usr/local/man:$MANPATH"
 export QUICK_V3_ROOT=`cat ~/.QUICK_V3_ROOT`
 
-# export ANDROID_SDK_ROOT=$CODE/dev_env/android_sdk
-export ANDROID_SDK_ROOT=~/Library/Android/sdk
+export ANDROID_SDK_ROOT=$CODE/dev_env/android_sdk
+# export ANDROID_SDK_ROOT=~/Library/Android/sdk
 export ANDROID_HOME=$ANDROID_SDK_ROOT
 export NDK_ROOT=$CODE/dev_env/NDK/android-ndk-r9b
 export ANDROID_NDK_ROOT=$NDK_ROOT
+export PATH=$PATH:$ANDROID_HOME:$ANDROID_HOME/platform-tools:$ANDROID_NDK_ROOT
 
 # for golang
 export GOPATH=$CODE/dev_env/go
@@ -104,31 +105,22 @@ function startWork(){
 cmd="'cd $CODE/Project2/trunk/Developer/client/scripts && vim **/*.lua'"
 python ~/.dotfiles/zsh/startWork.py $cmd
 }
-
-function vpn-connect {
-/usr/bin/env osascript <<-EOF
-tell application "System Events"
-        tell current location of network preferences
-                set VPN to service "imbahom_do" -- your VPN name here
-                if exists VPN then connect VPN
-                repeat while (current configuration of VPN is not connected)
-                    delay 1
-                end repeat
-        end tell
-end tell
-EOF
+function readLuaSrc(){
+    (cd $CODE/lua-5.1.4 && mvim **/*.c */*.h)
 }
 
-function vpn-disconnect {
-/usr/bin/env osascript <<-EOF
-tell application "System Events"
-        tell current location of network preferences
-                set VPN to service "imbahom_do" -- your VPN name here
-                if exists VPN then disconnect VPN
-        end tell
-end tell
-return
-EOF
-}
+# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
+export COCOS_CONSOLE_ROOT=/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/tools/cocos2d-console/bin
+export PATH=$COCOS_CONSOLE_ROOT:$PATH
 
+# Add environment variable COCOS_X_ROOT for cocos2d-x
+export COCOS_X_ROOT=/Applications/Cocos/Cocos2d-x
+export PATH=$COCOS_X_ROOT:$PATH
 
+# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
+export COCOS_TEMPLATES_ROOT=/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/templates
+export PATH=$COCOS_TEMPLATES_ROOT:$PATH
+
+# Add environment variable ANT_ROOT for cocos2d-x
+export ANT_ROOT=/Applications/Cocos/tools/ant/bin
+export PATH=$ANT_ROOT:$PATH

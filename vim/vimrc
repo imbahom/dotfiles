@@ -12,7 +12,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'imbahom/widget.vim'
 Bundle 'imbahom/quickX'
-Bundle 'test'
+" Bundle 'test'
 
 Bundle 'vimwiki/vimwiki'
 " Bundle 'vim-pandoc/vim-pandoc'
@@ -78,7 +78,7 @@ Bundle 'bling/vim-airline'
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "------- markup language -------
-Bundle 'tpope/vim-markdown'
+" Bundle 'tpope/vim-markdown'
 " Bundle 'timcharper/textile.vim'
 
 "------- Ruby --------
@@ -90,10 +90,10 @@ Bundle 'tpope/vim-markdown'
 
 "------- Go ----------
 "Bundle 'jnwhiteh/vim-golang'
-Bundle 'dgryski/vim-godef'
-Bundle 'cespare/vim-golang'
+" Bundle 'dgryski/vim-godef'
+" Bundle 'cespare/vim-golang'
 " Bundle 'fatih/vim-go'
-Bundle 'Blackrush/vim-gocode'
+" Bundle 'Blackrush/vim-gocode'
 
 "------- FPs ------
 " Bundle 'kien/rainbow_parentheses.vim'
@@ -106,7 +106,7 @@ Bundle 'Blackrush/vim-gocode'
 "--------------
 " Bundle 'rickharris/vim-blackboard'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'rickharris/vim-monokai'
+" Bundle 'rickharris/vim-monokai'
 " Bundle 'tpope/vim-vividchalk'
 " Bundle 'Lokaltog/vim-distinguished'
 " Bundle 'chriskempson/vim-tomorrow-theme'
@@ -140,14 +140,14 @@ let g:solarized_contrast="high"
 " let g:solarized_diffmode="normal"
 " let g:solarized_hitrail=0
 let g:solarized_menu=0
-if strftime("%H") < 12
-    set background=light
-else
-    set background=dark
-    if has("gui_running")
-        colorscheme monokai
-    endif
-endif
+"if strftime("%H") < 15
+"    set background=light
+"else
+"    set background=dark
+"    if has("gui_running")
+"        colorscheme monokai
+"    endif
+"endif
 
 " search
 set noignorecase
@@ -166,7 +166,7 @@ set t_Co=256                                                      " Explicitly t
 if has("gui_running")
     set mouse=a                                                       " use mouse in all modes
     set go=aAce  " remove toolbar
-    set transparency=10
+    set transparency=0
     set guifont=Source\ Code\ Pro:h18
     " set guifont=Monaco:h18
     set showtabline=2
@@ -191,8 +191,8 @@ set laststatus=2                                                  " use 2 lines 
 set matchtime=2                                                   " show matching bracket for 0.2 seconds
 " set matchpairs+=<:>                                               " specially for html
 
-" set number                                                        " show line numbers
-" set relativenumber
+set number                                                        " show line numbers
+set relativenumber
 
 " Default Indentation
 set autoindent
@@ -208,7 +208,6 @@ set backupskip=/tmp/*,/private/tmp/*
 set completeopt-=preview"}}}
 
 "filetype tabstop shiftwidth softtabstop textwidth"{{{
-autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
 autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
@@ -235,30 +234,31 @@ let g:airline_theme="powerlineish"
 " Rainbow parentheses for Lisp and variants
 
 " blabla {{{ "
-let g:rbpt_colorpairs = [
-            \ ['brown',       'RoyalBlue3'],
-            \ ['Darkblue',    'SeaGreen3'],
-            \ ['darkgray',    'DarkOrchid3'],
-            \ ['darkgreen',   'firebrick3'],
-            \ ['darkcyan',    'RoyalBlue3'],
-            \ ['darkred',     'SeaGreen3'],
-            \ ['darkmagenta', 'DarkOrchid3'],
-            \ ['brown',       'firebrick3'],
-            \ ['gray',        'RoyalBlue3'],
-            \ ['black',       'SeaGreen3'],
-            \ ['darkmagenta', 'DarkOrchid3'],
-            \ ['Darkblue',    'firebrick3'],
-            \ ['darkgreen',   'RoyalBlue3'],
-            \ ['darkcyan',    'SeaGreen3'],
-            \ ['darkred',     'DarkOrchid3'],
-            \ ['red',         'firebrick3'],
-            \ ]
-let g:rbpt_max = 16
+" let g:rbpt_colorpairs = [
+            " \ ['brown',       'RoyalBlue3'],
+            " \ ['Darkblue',    'SeaGreen3'],
+            " \ ['darkgray',    'DarkOrchid3'],
+            " \ ['darkgreen',   'firebrick3'],
+            " \ ['darkcyan',    'RoyalBlue3'],
+            " \ ['darkred',     'SeaGreen3'],
+            " \ ['darkmagenta', 'DarkOrchid3'],
+            " \ ['brown',       'firebrick3'],
+            " \ ['gray',        'RoyalBlue3'],
+            " \ ['black',       'SeaGreen3'],
+            " \ ['darkmagenta', 'DarkOrchid3'],
+            " \ ['Darkblue',    'firebrick3'],
+            " \ ['darkgreen',   'RoyalBlue3'],
+            " \ ['darkcyan',    'SeaGreen3'],
+            " \ ['darkred',     'DarkOrchid3'],
+            " \ ['red',         'firebrick3'],
+            " \ ]
+" let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 " }}} "
 
 " js"{{{
-let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_inctags = "html,body,head,p,tbody"
+let g:html_indent_autotags = "br,input,img"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 "}}}
@@ -413,42 +413,17 @@ let g:vimwiki_user_htmls = 'contack.html,'
 
 ""{{{ ctrlsf
 " nnoremap <leader>a :Ack
-nnoremap <leader>a :CtrlSF -filetype lua -R <c-r>=expand("<cword>")<CR>
+nnoremap <leader>a :CtrlSF -R <c-r>=expand("<cword>")<CR> -filetype <c-r>=expand("%:e")<CR> 
 " nnoremap <leader>a :CtrlSF <c-r>=expand("<cword>")<CR>
 " let g:ctrlsf_mapping = {
 " \ "split": "<C-O>",
 " \ }
-let g:ctrlsf_position = 'left'
+let g:ctrlsf_position = 'top'
 
 "}}}
 
 "}}}
 " some Useful Functions and mapping"{{{
-" faster loading large file 
-let g:LargeFile = 1024 * 1024 * 5
-augroup LargeFile
-    autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
-    " autocmd BufUnload * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | exec "set syntax=on" | endif
-augroup END
-
-function LargeFile()
-    " no syntax highlighting etc
-    set eventignore+=FileType
-    " set eventignore+=Syntax
-
-    " save memory when other file is viewed
-    setlocal bufhidden=unload
-
-    " is read-only (write with :w new_filename)
-    setlocal buftype=nowrite
-
-    " no undo possible
-    setlocal undolevels=-1
-
-    " display message
-    autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
-endfunction
-
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -508,7 +483,7 @@ vnoremap / /\v
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-"terminal like control
+"emasc like control
 inoremap <c-a> <esc>I
 inoremap <c-e> <esc>A
 
