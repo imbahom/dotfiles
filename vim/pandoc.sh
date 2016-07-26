@@ -18,7 +18,7 @@
 # 7. template_path : the full path to the wiki's templates
 # 8. template_default : the default template name
 # 9. template_ext : the extension of template files
-
-echo $6
+echo $*
+# echo $6
 outputFileName=`basename -s .$3 $5`
 pandoc $5 -o $4$outputFileName.html -c $6

@@ -11,7 +11,7 @@ Bundle 'gmarik/vundle'
 " let g:vundle_default_git_proto = "git"
 
 Bundle 'imbahom/widget.vim'
-" Bundle 'imbahom/quickX'
+Bundle 'imbahom/quickX'
 
 Bundle 'vimwiki/vimwiki'
 " Bundle 'vim-pandoc/vim-pandoc'
@@ -179,7 +179,8 @@ if has("gui_running")
     set cursorline cursorcolumn
 endif
 set report=0                                                      " always report number of lines changed                "
-set nowrap                                                        " dont wrap lines
+set wrap                                                        " dont wrap lines
+" set nowrap                                                        " dont wrap lines
 set scrolloff=0                                                   " 5 lines above/below cursor when scrolling
 " set showbreak=>\
 " set cpoptions+=n
@@ -392,13 +393,13 @@ let g:vimwiki_list = [{'path':'~/vimwiki/',
 
 " pandoc to html
 " let g:vimwiki_list = [{'path': '~/vimwiki/',
-" \ 'path_html': '~/vimwiki_html/',
+" \ 'path_html': '~/vimwiki/www/',
 " \ 'template_path': '~/vimwiki/template/',
 " \ 'template_default': 'default.tpl',
 " \ 'css_name': 'static/css/bootstrap.css',
 " \ 'syntax': 'markdown',
 " \ 'ext': '.md',
-" \ 'custom_wiki2html': '~/pandoc.sh'}]
+" \ 'custom_wiki2html': '~/.vim/pandoc.sh'}]
 
 " \ 'template_ext': '.tpl',
 
@@ -455,6 +456,9 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+"insert mode set paste
+au InsertEnter * exe "set paste"
+au InsertLeave * exe "set nopaste"
 "窗口改变时等分窗口大小
 au VimResized * exe "normal! \<c-w>="
 
