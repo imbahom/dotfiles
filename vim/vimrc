@@ -456,9 +456,10 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+set pastetoggle=<F9>
 "insert mode set paste
-au InsertEnter * exe "set paste"
-au InsertLeave * exe "set nopaste"
+" au InsertEnter * exe "set paste"
+" au InsertLeave * exe "set nopaste"
 "窗口改变时等分窗口大小
 au VimResized * exe "normal! \<c-w>="
 
