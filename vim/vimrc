@@ -10,6 +10,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 " let g:vundle_default_git_proto = "git"
 
+Bundle 'mattn/webapi-vim'
 Bundle 'imbahom/widget.vim'
 Bundle 'imbahom/quickX'
 
@@ -86,6 +87,8 @@ Bundle 'vim-airline/vim-airline-themes'
 "------- Lua --------
 " Bundle 'xolox/vim-lua-inspect'
 
+"------- rust ---------
+Bundle 'rust-lang/rust.vim'
 
 "------- Go ----------
 "Bundle 'jnwhiteh/vim-golang'
@@ -179,8 +182,8 @@ if has("gui_running")
     set cursorline cursorcolumn
 endif
 set report=0                                                      " always report number of lines changed                "
-set wrap                                                        " dont wrap lines
-" set nowrap                                                        " dont wrap lines
+" set wrap                                                        " wrap lines
+set nowrap                                                        " dont wrap lines
 set scrolloff=0                                                   " 5 lines above/below cursor when scrolling
 " set showbreak=>\
 " set cpoptions+=n
@@ -228,7 +231,7 @@ autocmd FileType c setlocal omnifunc=ccomplete#Complete
 " autocmd BufWritePre *.go :Fmt
 
 " syntax support
-" autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
+autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
 
 " Plugin settings"{{{
 let g:airline_theme="powerlineish"
@@ -256,6 +259,11 @@ let g:airline_theme="powerlineish"
 " let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 " }}} "
+
+" rust {{{
+let g:rustfmt_autosave = 1
+let g:rustfmt_command = 'rustfmt'
+" }}}
 
 " js"{{{
 let g:html_indent_inctags = "html,body,head,p,tbody"
@@ -330,7 +338,7 @@ let g:tagbar_type_go = {
 
 " Nerd Tree"{{{
 let NERDChristmasTree=0
-let NERDTreeWinSize=60
+let NERDTreeWinSize=45
 let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 " let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
@@ -386,11 +394,14 @@ let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:vimwiki_list = [{'path':'~/vimwiki/',
             \ 'path_html': '~/vimwiki/www/',
             \ 'template_path': '~/vimwiki/template/',
-            \ 'template_default': 'default.tpl',
-            \ 'css_name': 'static/css/bootstrap.css',
+            \ 'template_default': 'default',
+            \ 'template_ext': '.tpl',
             \ 'nested': {'python': 'python', 'c++': 'cpp'},
+            \ 'css_name': 'static/css/bootstrap.css',
             \ 'ext': '.wiki'}]
-
+            " \ 'custom_wiki2html': $HOME.'/.vim/bundle/vimwiki/autoload/vimwiki/customwiki2html.sh',
+            " \ 'syntax': 'markdown',
+            
 " pandoc to html
 " let g:vimwiki_list = [{'path': '~/vimwiki/',
 " \ 'path_html': '~/vimwiki/www/',
