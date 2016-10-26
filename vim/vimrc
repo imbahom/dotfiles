@@ -66,6 +66,7 @@ Bundle 'dyng/ctrlsf.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/syntastic'
+Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 
 "-------------
@@ -234,7 +235,7 @@ autocmd FileType c setlocal omnifunc=ccomplete#Complete
 autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
 
 " Plugin settings"{{{
-let g:airline_theme="powerlineish"
+let g:airline_theme="solarized"
 " Rainbow parentheses for Lisp and variants
 
 " blabla {{{ "
@@ -418,7 +419,7 @@ let g:vimwiki_list = [{'path':'~/vimwiki/',
 let g:vimwiki_camel_case = 0
 " 自定义的HTML页面
 " 如果生成HTML的目录下有手工hack的html文件，也会被无情的删除，可以通过 g:vimwiki_user_htmls 选项配置用户html文件，不被自动删除。
-let g:vimwiki_user_htmls = 'contack.html,'
+let g:vimwiki_user_htmls = 'contack.html,aboutme.html'
 " 配置多个VimWiki项目
 " let g:vimwiki_list = [{'path':'~/vimwiki/'}, {'path':'~/pwiki'}]
 "}}}
