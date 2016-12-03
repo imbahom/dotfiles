@@ -196,8 +196,8 @@ set laststatus=2                                                  " use 2 lines 
 set matchtime=2                                                   " show matching bracket for 0.2 seconds
 " set matchpairs+=<:>                                               " specially for html
 
-set number                                                        " show line numbers
-set relativenumber
+set nonumber                                                        " show line numbers
+set norelativenumber
 
 " Default Indentation
 set autoindent

@@ -55,7 +55,7 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
 . "$(brew --prefix nvm)/nvm.sh"
 
-export PATH=~/bin:/usr/local/bin:usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/sbin
+export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/sbin
 export CODE=~/Documents/programming/code
 # export MANPATH="/usr/local/man:$MANPATH"
 export QUICK_V3_ROOT=`cat ~/.QUICK_V3_ROOT`
@@ -70,13 +70,17 @@ export KINDLE_BOOKS=~/Documents/kindle_books
 export PATH=$PATH:$KINDLE_BOOKS
 export ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
+export JAVA_HOME=`/usr/libexec/java_home`
 export PATH=$PATH:$JAVA_HOME
 
 export NODE_PATH=/usr/local/lib/node_modules
 export PATH=$PATH:$NODE_PATH
 
 export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+
+#php
+export PATH=$(brew --prefix homebrew/php/php55)/bin:$PATH
+export PATH=$(brew --prefix homebrew/php/php55)/sbin:$PATH
 
 # for golang
 export GOPATH=$CODE/dev_env/go
@@ -93,6 +97,7 @@ export TERM=xterm-256color
 
 #Preferred editor for local and remote sessions
 EDITOR="vim"
+export SVN_EDITOR=vim
 
 # Compilation flags export ARCHFLAGS="-arch x86_64"
 
