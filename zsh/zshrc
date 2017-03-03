@@ -47,45 +47,18 @@ plugins=(git svn geoip dailyAlias vpn_switch git_imbahom svn_imbahom ruby osx en
 
 source $ZSH/oh-my-zsh.sh
 
+if test "$(uname)" = "Darwin" ;then
+    source ~/.dotfiles/zsh/zshrc_osx
+else
+    source ~/.dotfiles/zsh/zshrc_linux
+fi
+
+
 # User configuration
 # using vi mode in zsh
 # bindkey -v
 
 # bindkey '^R' history-incremental-search-backward
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
-
-export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/sbin
-export CODE=~/Documents/programming/code
-# export MANPATH="/usr/local/man:$MANPATH"
-export QUICK_V3_ROOT=`cat ~/.QUICK_V3_ROOT`
-
-export ANDROID_SDK_ROOT=$CODE/dev_env/android_sdk
-# export ANDROID_SDK_ROOT=~/Library/Android/sdk
-export ANDROID_HOME=$ANDROID_SDK_ROOT
-export NDK_ROOT=$CODE/dev_env/NDK/android-ndk-r9b
-export ANDROID_NDK_ROOT=$NDK_ROOT
-export PATH=$PATH:$ANDROID_HOME:$ANDROID_HOME/platform-tools:$ANDROID_NDK_ROOT
-export KINDLE_BOOKS=~/Documents/kindle_books
-export PATH=$PATH:$KINDLE_BOOKS
-export ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
-
-export JAVA_HOME=`/usr/libexec/java_home`
-export PATH=$PATH:$JAVA_HOME
-
-export NODE_PATH=/usr/local/lib/node_modules
-export PATH=$PATH:$NODE_PATH
-
-export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
-
-#php
-export PATH=$(brew --prefix homebrew/php/php55)/bin:$PATH
-export PATH=$(brew --prefix homebrew/php/php55)/sbin:$PATH
-
-# for golang
-export GOPATH=$CODE/dev_env/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
 # specify that it must be pressed twice to exit:
 export IGNOREEOF=1
 
@@ -99,6 +72,8 @@ export TERM=xterm-256color
 EDITOR="vim"
 export SVN_EDITOR=vim
 
+export FCITX_SOCKET=/tmp/FCITX_SOCKET.sock
+
 # Compilation flags export ARCHFLAGS="-arch x86_64"
 
 # ssh export SSH_KEY_PATH="~/.ssh/dsa_id"
@@ -111,7 +86,7 @@ export SVN_EDITOR=vim
 # trap 'rm ~/$$.out' EXIT
 
 function startWork(){
-cmd="'cd $CODE/Project2/trunk/Developer/client/scripts && vim **/*.lua'"
+# cmd="'cd $CODE/Project2/trunk/Developer/client/scripts && vim **/*.lua'"
 python ~/.dotfiles/zsh/startWork.py $cmd
 }
 

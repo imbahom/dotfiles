@@ -1,0 +1,34 @@
+export NVM_DIR="$HOME/.nvm"
+. "$(brew --prefix nvm)/nvm.sh"
+
+export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/sbin
+export CODE=~/Documents/programming/code
+# export MANPATH="/usr/local/man:$MANPATH"
+export QUICK_V3_ROOT=`cat ~/.QUICK_V3_ROOT`
+
+export ANDROID_SDK_ROOT=$CODE/dev_env/android_sdk
+# export ANDROID_SDK_ROOT=~/Library/Android/sdk
+export ANDROID_HOME=$ANDROID_SDK_ROOT
+export NDK_ROOT=$CODE/dev_env/NDK/android-ndk-r9b
+export ANDROID_NDK_ROOT=$NDK_ROOT
+export PATH=$PATH:$ANDROID_HOME:$ANDROID_HOME/platform-tools:$ANDROID_NDK_ROOT
+export KINDLE_BOOKS=~/Documents/kindle_books
+export PATH=$PATH:$KINDLE_BOOKS
+export ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/
+
+export JAVA_HOME=`/usr/libexec/java_home`
+export PATH=$PATH:$JAVA_HOME
+
+export NODE_PATH=/usr/local/lib/node_modules
+export PATH=$PATH:$NODE_PATH
+
+export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+
+#php
+export PATH=$(brew --prefix homebrew/php/php55)/bin:$PATH
+export PATH=$(brew --prefix homebrew/php/php55)/sbin:$PATH
+
+# for golang
+export GOPATH=$CODE/dev_env/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/opt/go/libexec/bin

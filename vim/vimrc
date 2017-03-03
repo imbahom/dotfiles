@@ -12,7 +12,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'mattn/webapi-vim'
 Bundle 'imbahom/widget.vim'
-Bundle 'imbahom/quickX'
+" Bundle 'imbahom/quickX'
 
 Bundle 'vimwiki/vimwiki'
 " Bundle 'vim-pandoc/vim-pandoc'
@@ -54,7 +54,11 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'godlygeek/tabular'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle "VisIncr"
+Bundle "cskeeters/vim-calutil"
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'mariodpros/vim-mark'
+" Bundle 'vim-scripts/fcitx.vim'
+Bundle 'CodeFalling/fcitx-vim-osx'
 
 "--------------
 " IDE features
@@ -89,7 +93,7 @@ Bundle 'vim-airline/vim-airline-themes'
 " Bundle 'xolox/vim-lua-inspect'
 
 "------- rust ---------
-Bundle 'rust-lang/rust.vim'
+" Bundle 'rust-lang/rust.vim'
 
 "------- Go ----------
 "Bundle 'jnwhiteh/vim-golang'
@@ -132,7 +136,7 @@ set encoding=utf-8
 
 set t_Co=256
 colorscheme solarized
-set background=light
+set background=dark
 let g:solarized_bold=1
 " let g:solarized_termtrans=0
 " let g:solarized_degrade=0
@@ -419,7 +423,7 @@ let g:vimwiki_list = [{'path':'~/vimwiki/',
 let g:vimwiki_camel_case = 0
 " 自定义的HTML页面
 " 如果生成HTML的目录下有手工hack的html文件，也会被无情的删除，可以通过 g:vimwiki_user_htmls 选项配置用户html文件，不被自动删除。
-let g:vimwiki_user_htmls = 'contack.html,aboutme.html'
+let g:vimwiki_user_htmls = '404.html,aboutme.html'
 " 配置多个VimWiki项目
 " let g:vimwiki_list = [{'path':'~/vimwiki/'}, {'path':'~/pwiki'}]
 "}}}
@@ -435,32 +439,12 @@ let g:ctrlsf_position = 'top'
 
 "}}}
 
+"{{{ fcitx
+set ttimeoutlen=100
 "}}}
+"}}}
+
 " some Useful Functions and mapping"{{{
-" faster loading large file 
-" let g:LargeFile = 1024 * 1024 * 5
-" augroup LargeFile
-    " autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
-    " " autocmd BufUnload * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | exec "set syntax=on" | endif
-" augroup END
-
-" function LargeFile()
-    " " no syntax highlighting etc
-    " set eventignore+=FileType
-    " " set eventignore+=Syntax
-
-    " " save memory when other file is viewed
-    " setlocal bufhidden=unload
-
-    " " is read-only (write with :w new_filename)
-    " setlocal buftype=nowrite
-
-    " " no undo possible
-    " setlocal undolevels=-1
-
-    " " display message
-    " autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
-" endfunction
 
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
