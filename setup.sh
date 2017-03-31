@@ -37,6 +37,12 @@ else
     ln -s ~/.dotfiles/proxychains ~/.proxychains
 fi
 
+if [ -e ~/.curlrc ]; then
+    echo ".curlrc already exist"
+else
+    ln -s ~/.dotfiles/curlrc ~/.curlrc
+fi
+
 echo "BundleInstall vim plugins"
 echo "tmux ==> prefix + I to install plugins that configed in tmux.conf file"
 echo "prefix + U to update installed plugins"
