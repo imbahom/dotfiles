@@ -32,7 +32,7 @@ Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 Bundle 'ervandew/supertab'
 Bundle 'Raimondi/delimitMate'
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 "------ snipmate dependencies -------
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
@@ -175,7 +175,7 @@ if has("gui_running")
     set mouse=a                                                       " use mouse in all modes
     set go=aAce  " remove toolbar
     set transparency=0
-    set guifont=Source\ Code\ Pro:h18
+    set guifont=Source\ Code\ Pro:h16
     " set guifont=Monaco:h18
     set showtabline=2
     "maximum window size

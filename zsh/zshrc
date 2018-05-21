@@ -73,6 +73,7 @@ EDITOR="vim"
 export SVN_EDITOR=vim
 
 export FCITX_SOCKET=/tmp/FCITX_SOCKET.sock
+export PATH="/usr/local/opt/python@2/bin:$PATH"
 
 # Compilation flags export ARCHFLAGS="-arch x86_64"
 
@@ -93,3 +94,5 @@ python ~/.dotfiles/zsh/startWork.py $cmd
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+export PATH="/usr/local/opt/curl/bin:$PATH"
