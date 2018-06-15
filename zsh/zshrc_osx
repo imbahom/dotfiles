@@ -28,3 +28,6 @@ export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
 export GOPATH=$CODE/dev_env/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+alias proxy='export all_proxy=socks5://127.0.0.1:1080'
+alias unproxy='unset all_proxy'
