@@ -43,6 +43,12 @@ else
     ln -s ~/.dotfiles/curlrc ~/.curlrc
 fi
 
+if [ -e ~/.dnslist ]; then
+    echo ".dnslist already exist"
+else
+    ln -s ~/.dotfiles/dnslist ~/.dnslist
+fi
+
 echo "BundleInstall vim plugins"
 echo "tmux ==> prefix + I to install plugins that configed in tmux.conf file"
 echo "prefix + U to update installed plugins"

@@ -96,3 +96,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export PATH="/usr/local/opt/curl/bin:$PATH"
+
+timeDNS() { parallel -j0 --tag dig @{}"$*" ::: `cat ~/.dnslist` | grep Query | sort -nk5; }
